@@ -1,8 +1,14 @@
 export { Header } from "./Header";
 export { Hero } from "./Hero";
+export { HeroDoctorSlider } from "./HeroDoctorSlider";
+export { WhatICanHelpWith } from "./WhatICanHelpWith";
+export { NiceToMeetYou } from "./NiceToMeetYou";
 export { Services } from "./Services";
+export { SocialLinks } from "./SocialLinks";
+export { IncomingBooks } from "./IncomingBooks";
 export { HowItWorks } from "./HowItWorks";
 export { Therapists } from "./Therapists";
 export { Testimonials } from "./Testimonials";
 export { CtaBand } from "./CtaBand";
+export { Blogs } from "./Blogs";
 export { Footer } from "./Footer";
