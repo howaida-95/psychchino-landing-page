@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/content/blog";
 
-import type { MessageDictionary } from "./messages/en";
+import type { MessageDictionary } from "./messages/types";
 
 /** Merge per-slug copy from the active message bundle. Image URLs and dates stay from the base post. */
 export function getLocalizedBlogPost(

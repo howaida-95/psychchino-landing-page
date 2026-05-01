@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import { useDirection, useI18n } from "@/i18n";
 import { useSwiperRtlSync } from "@/lib/useSwiperRtlSync";
 
-import type { MessageDictionary } from "@/i18n/messages/en";
+import type { MessageDictionary } from "@/i18n/messages/types";
 
 type Person = MessageDictionary["therapists"]["people"][number];
 
@@ -43,7 +43,7 @@ function PersonCard({ person, cta }: { person: Person; cta: string }) {
 
 export function Therapists() {
   const { dir } = useDirection();
-  const { messages } = useI18n();
+  const { messages, locale } = useI18n();
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   useSwiperRtlSync(swiper, dir);
   const t = messages.therapists;
@@ -51,7 +51,7 @@ export function Therapists() {
   return (
     <section
       id="therapists"
-      className="border-t border-cream-dark bg-sage/[0.06] px-4 py-20 sm:px-6 lg:px-8"
+      className="border-t border-cream-dark bg-sage/[0.06] px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="therapists-heading"
     >
       <div className="mx-auto max-w-6xl">
@@ -65,8 +65,9 @@ export function Therapists() {
           <p className="mt-4 text-lg text-muted">{t.lead}</p>
         </div>
 
-        <div className="therapists-swiper relative mt-14 w-full min-w-0 overflow-x-clip sm:px-10 lg:px-12">
+        <div className="therapists-swiper relative mt-10 w-full min-w-0 overflow-x-clip sm:px-6 lg:px-8">
           <Swiper
+            key={locale}
             onSwiper={setSwiper}
             dir={dir}
             modules={[Navigation, Pagination, Autoplay]}

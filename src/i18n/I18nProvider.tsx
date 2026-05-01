@@ -4,21 +4,20 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useMemo,
   useState,
 } from "react";
 
-import { ar } from "./messages/ar";
-import { en } from "./messages/en";
-import type { MessageDictionary } from "./messages/en";
+import type { MessageDictionary } from "./messages/types";
 
 const STORAGE_LOCALE = "psychochino-locale";
 const LEGACY_DIR = "psychochino-dir";
 
 export type AppLocale = "en" | "ar";
 
-const bundled: Record<AppLocale, MessageDictionary> = { en, ar };
+type Bundle = Record<AppLocale, MessageDictionary>;
 
 type TParams = Record<string, string | number | undefined>;
 
@@ -70,6 +69,14 @@ function applyToDocument(loc: AppLocale) {
   document.documentElement.setAttribute("data-locale", loc);
 }
 
+async function fetchMessages(locale: AppLocale): Promise<MessageDictionary> {
+  const res = await fetch(`/api/messages/${locale}`);
+  if (!res.ok) {
+    throw new Error(`Failed to load messages: ${locale}`);
+  }
+  return res.json() as Promise<MessageDictionary>;
+}
+
 type I18nValue = {
   locale: AppLocale;
   setLocale: (l: AppLocale) => void;
@@ -84,6 +91,8 @@ const I18nContext = createContext<I18nValue | null>(null);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<AppLocale>("en");
+  const [bundle, setBundle] = useState<Bundle | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useLayoutEffect(() => {
     let loc: AppLocale = "en";
@@ -108,6 +117,29 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     applyToDocument(loc);
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+    setLoadError(null);
+    (async () => {
+      try {
+        const [en, ar] = await Promise.all([
+          fetchMessages("en"),
+          fetchMessages("ar"),
+        ]);
+        if (!cancelled) {
+          setBundle({ en, ar });
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setLoadError(e instanceof Error ? e.message : "Load failed");
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const setLocale = useCallback((l: AppLocale) => {
     setLocaleState(l);
     try {
@@ -118,20 +150,53 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     applyToDocument(l);
   }, []);
 
-  const messages = bundled[locale];
-
-  const t = useCallback(
-    (key: string, params?: TParams) => getString(messages, key, params, key),
-    [messages],
-  );
-
+  const messages = bundle?.[locale];
+  const isLoading = bundle === null;
   const isRtl = locale === "ar";
   const dir: "ltr" | "rtl" = isRtl ? "rtl" : "ltr";
 
+  const t = useCallback(
+    (key: string, params?: TParams) => {
+      if (!messages) {
+        return key;
+      }
+      return getString(messages, key, params, key);
+    },
+    [messages],
+  );
+
   const value = useMemo(
-    () => ({ locale, setLocale, messages, t, isRtl, dir }),
+    () => ({ locale, setLocale, messages: messages!, t, isRtl, dir }),
     [locale, setLocale, messages, t, isRtl, dir],
   );
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-background px-4 text-center">
+        <p className="text-sm font-medium text-foreground">Could not load site copy.</p>
+        <p className="max-w-md text-sm text-muted">{loadError}</p>
+        <button
+          type="button"
+          className="rounded-full bg-sage px-4 py-2 text-sm font-semibold text-white"
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div
+        className="flex min-h-screen items-center justify-center bg-background text-sm text-muted"
+        role="status"
+        aria-live="polite"
+      >
+        Loading…
+      </div>
+    );
+  }
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }

@@ -11,14 +11,14 @@ export function NiceToMeetYou() {
   return (
     <section
       id="nice-to-meet-you"
-      className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-background px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="nice-to-meet-you-heading"
     >
       <div
         className="pointer-events-none absolute right-0 top-1/2 h-64 w-64 -translate-y-1/2 translate-x-1/4 rounded-full bg-sage/10 blur-3xl"
         aria-hidden
       />
-      <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16">
+      <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-14">
         <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-4xl border border-cream-dark shadow-xl shadow-sage/10 lg:mx-0 lg:max-w-none">
           <Image
             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80"

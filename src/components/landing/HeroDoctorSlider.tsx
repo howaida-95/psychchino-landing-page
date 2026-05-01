@@ -18,7 +18,7 @@ const SLIDER_H = "h-[min(72vw,22rem)] sm:h-[min(70vw,26rem)] lg:h-[min(36vw,32re
 
 export function HeroDoctorSlider() {
   const { dir } = useDirection();
-  const { messages } = useI18n();
+  const { messages, locale } = useI18n();
   const slides = messages.heroSlider;
   const [active, setActive] = useState(0);
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -36,6 +36,7 @@ export function HeroDoctorSlider() {
         className={`relative ${SLIDER_H} ${SLIDER_MIN_H} w-full overflow-hidden rounded-4xl border border-cream-dark bg-cream-dark shadow-xl shadow-sage/10`}
       >
         <Swiper
+          key={locale}
           onSwiper={setSwiper}
           dir={dir}
           modules={[Autoplay, EffectFade, Pagination]}

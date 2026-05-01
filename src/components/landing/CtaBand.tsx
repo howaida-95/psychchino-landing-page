@@ -10,7 +10,7 @@ export function CtaBand() {
   return (
     <section
       id="contact"
-      className="px-4 pb-20 sm:px-6 lg:px-8"
+      className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="cta-heading"
     >
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sage px-6 py-14 text-center shadow-xl shadow-sage/20 sm:px-12 sm:py-16 lg:px-16">

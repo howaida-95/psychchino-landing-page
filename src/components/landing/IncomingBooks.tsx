@@ -14,7 +14,7 @@ import { useDirection, useI18n } from "@/i18n";
 import { useSwiperRtlSync } from "@/lib/useSwiperRtlSync";
 import { formatDateWithWeekday, type DateFormatLocale } from "@/lib/dateFormat";
 
-import type { MessageDictionary } from "@/i18n/messages/en";
+import type { MessageDictionary } from "@/i18n/messages/types";
 
 type BookItem = MessageDictionary["incomingBooks"]["items"][number] & { coverSrc: string };
 
@@ -45,7 +45,7 @@ function BookCard({
         <p className="text-sm leading-relaxed text-muted">{book.description}</p>
         <div className="mt-5">
           <p className="text-xs font-semibold uppercase tracking-wide text-sage">{labels.ins}</p>
-          <ul className="mt-2 flex flex-wrap gap-2">
+          <ul className="my-2 flex flex-wrap gap-2">
             {book.instructors.map((name) => (
               <li key={name}>
                 <span className="inline-block rounded-full bg-sage/12 px-3 py-1 text-xs font-medium text-sage">
@@ -76,9 +76,9 @@ export function IncomingBooks() {
   const dateLoc: DateFormatLocale = locale === "ar" ? "ar" : "en";
   const ib = messages.incomingBooks;
   const coverSrc: [string, string, string] = [
-    "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=640&q=80",
-    "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=640&q=80",
-    "https://images.unsplash.com/photo-1524997147910-b394dffb310c?auto=format&fit=crop&w=640&q=80",
+    "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=960&q=80",
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=960&q=80",
+    "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=960&q=80",
   ];
 
   const books: BookItem[] = ib.items.map((item, i) => ({
@@ -89,7 +89,7 @@ export function IncomingBooks() {
   return (
     <section
       id="incoming-books"
-      className="border-t border-cream-dark bg-background px-4 py-20 sm:px-6 lg:px-8"
+      className="border-t border-cream-dark bg-background px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="incoming-books-heading"
     >
       <div className="mx-auto max-w-6xl">
@@ -104,12 +104,13 @@ export function IncomingBooks() {
           <p className="mt-4 text-lg text-muted">{ib.lead}</p>
         </div>
 
-        <div className="incoming-books-swiper relative mt-14 w-full min-w-0 overflow-x-clip sm:px-10 lg:px-12">
+        <div className="incoming-books-swiper relative mt-10 w-full min-w-0 overflow-x-clip sm:px-6 lg:px-8">
           <Swiper
+            key={locale}
             onSwiper={setSwiper}
             dir={dir}
             modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={16}
+            spaceBetween={12}
             slidesPerView={1}
             watchOverflow
             grabCursor
@@ -128,19 +129,19 @@ export function IncomingBooks() {
             speed={600}
             breakpoints={{
               480: {
-                spaceBetween: 20,
+                spaceBetween: 14,
               },
               640: {
                 slidesPerView: 1,
-                spaceBetween: 20,
+                spaceBetween: 16,
               },
               768: {
                 slidesPerView: 2,
-                spaceBetween: 24,
+                spaceBetween: 18,
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 28,
+                spaceBetween: 20,
               },
             }}
             className="incoming-books-swiper-inner w-full min-w-0 max-w-full pb-14 sm:pb-12 [&_.swiper-pagination]:bottom-1.5 sm:[&_.swiper-pagination]:bottom-0.5 [&_.swiper-wrapper]:!items-stretch [&_.swiper-slide]:!h-auto [&_.swiper-slide]:!box-border [&_.swiper-pagination-bullet]:!h-2.5 [&_.swiper-pagination-bullet]:!w-2.5 sm:[&_.swiper-pagination-bullet]:!h-2 sm:[&_.swiper-pagination-bullet]:!w-2"

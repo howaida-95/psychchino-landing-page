@@ -1,10 +1,10 @@
 import { BlogIndex } from "@/components/blog/BlogIndex";
 
-import { en } from "@/i18n/messages/en";
+import messagesEn from "@/data/messages.en.json";
 
 export const metadata = {
   title: "Blog — Psychochino",
-  description: en.blogs.lead,
+  description: messagesEn.blogs.lead,
 };
 
 export default function BlogIndexPage() {

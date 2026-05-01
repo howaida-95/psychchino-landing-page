@@ -3,7 +3,7 @@ import { DM_Sans, Fraunces, Noto_Sans_Arabic } from "next/font/google";
 
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { I18nProvider } from "@/i18n";
-import { en } from "@/i18n/messages/en";
+import messagesEn from "@/data/messages.en.json";
 
 import "./globals.css";
 
@@ -26,8 +26,8 @@ const notoArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: en.siteTitle,
-  description: en.siteDescription,
+  title: messagesEn.siteTitle,
+  description: messagesEn.siteDescription,
 };
 
 export default function RootLayout({

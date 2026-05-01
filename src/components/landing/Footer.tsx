@@ -21,7 +21,7 @@ export function Footer() {
   const { t, messages } = useI18n();
   const f = messages.footer;
   return (
-    <footer className="border-t border-cream-dark bg-white/40 px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="border-t border-cream-dark bg-white/40 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-serif text-xl font-semibold text-sage">{messages.brand}</p>

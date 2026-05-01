@@ -1,16 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f3ec;
-  --foreground: #1e2d26;
-  --sage: #4a6c5a;
-  --sage-dark: #3a5648;
-  --cream-dark: #ebe6dc;
-  --accent: #c17f59;
-  --accent-hover: #a86b48;
-  --muted: #5c665f;
-  /* Semantic primary: matches brand green (sage) */
+  /* Psychuccino logo palette: espresso, latte cream, caramel, leaf */
+  --background: #faf6f0;
+  --foreground: #3a2619;
+  --sage: #4b3621;
+  --sage-dark: #352516;
+  --cream-dark: #ede6dc;
+  --accent: #c08240;
+  --accent-hover: #a66d2e;
+  --muted: #6d5849;
+  --leaf: #4a5c47;
+  /* Primary actions / pagination (espresso brown) */
   --primary: var(--sage);
+  /* Landing sections: vertical padding (use py-16 sm:py-20 + px-4 sm:px-6 lg:px-8) */
+  --section-py: 4rem;
+  --section-py-sm: 5rem;
+  /* Space below intro (kicker/heading/lead) before main block */
+  --section-content-gap: 2.5rem;
 }
 
 @theme inline {
@@ -23,6 +30,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-primary: var(--primary);
+  --color-leaf: var(--leaf);
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-fraunces);
 }
@@ -37,15 +45,21 @@ body {
   font-family: var(--font-noto-arabic), var(--font-dm-sans), system-ui, sans-serif;
 }
 
-/* Swiper: custom nav (incoming books + therapists carousels) */
+/* Swiper: custom nav — landing carousels */
 .incoming-books-swiper-inner.swiper,
-.therapists-swiper-inner.swiper {
+.therapists-swiper-inner.swiper,
+.blogs-swiper-inner.swiper,
+.testimonials-swiper-inner.swiper {
   --swiper-navigation-size: 1.75rem;
 }
 .incoming-books-swiper-inner.swiper .swiper-button-next,
 .incoming-books-swiper-inner.swiper .swiper-button-prev,
 .therapists-swiper-inner.swiper .swiper-button-next,
-.therapists-swiper-inner.swiper .swiper-button-prev {
+.therapists-swiper-inner.swiper .swiper-button-prev,
+.blogs-swiper-inner.swiper .swiper-button-next,
+.blogs-swiper-inner.swiper .swiper-button-prev,
+.testimonials-swiper-inner.swiper .swiper-button-next,
+.testimonials-swiper-inner.swiper .swiper-button-prev {
   width: 1.75rem;
   height: 1.75rem;
   margin-top: 0;
@@ -55,56 +69,78 @@ body {
   color: #fff;
   border-radius: 9999px;
   border: 1.5px solid #fff;
-  box-shadow: 0 2px 10px rgba(30, 45, 38, 0.16);
+  box-shadow: 0 2px 10px rgba(59, 40, 28, 0.18);
   transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 .incoming-books-swiper-inner.swiper .swiper-button-next:hover,
 .incoming-books-swiper-inner.swiper .swiper-button-prev:hover,
 .therapists-swiper-inner.swiper .swiper-button-next:hover,
-.therapists-swiper-inner.swiper .swiper-button-prev:hover {
+.therapists-swiper-inner.swiper .swiper-button-prev:hover,
+.blogs-swiper-inner.swiper .swiper-button-next:hover,
+.blogs-swiper-inner.swiper .swiper-button-prev:hover,
+.testimonials-swiper-inner.swiper .swiper-button-next:hover,
+.testimonials-swiper-inner.swiper .swiper-button-prev:hover {
   background: var(--sage-dark);
-  box-shadow: 0 3px 12px rgba(30, 45, 38, 0.22);
+  box-shadow: 0 3px 12px rgba(59, 40, 28, 0.24);
 }
 .incoming-books-swiper-inner.swiper .swiper-button-next::after,
 .incoming-books-swiper-inner.swiper .swiper-button-prev::after,
 .therapists-swiper-inner.swiper .swiper-button-next::after,
-.therapists-swiper-inner.swiper .swiper-button-prev::after {
+.therapists-swiper-inner.swiper .swiper-button-prev::after,
+.blogs-swiper-inner.swiper .swiper-button-next::after,
+.blogs-swiper-inner.swiper .swiper-button-prev::after,
+.testimonials-swiper-inner.swiper .swiper-button-next::after,
+.testimonials-swiper-inner.swiper .swiper-button-prev::after {
   font-size: 0.4rem;
   font-weight: 800;
   color: #fff;
 }
 .incoming-books-swiper-inner.swiper .swiper-button-disabled,
-.therapists-swiper-inner.swiper .swiper-button-disabled {
+.therapists-swiper-inner.swiper .swiper-button-disabled,
+.blogs-swiper-inner.swiper .swiper-button-disabled,
+.testimonials-swiper-inner.swiper .swiper-button-disabled {
   opacity: 0.35;
 }
 .incoming-books-swiper-inner.swiper .swiper-button-prev,
-.therapists-swiper-inner.swiper .swiper-button-prev {
+.therapists-swiper-inner.swiper .swiper-button-prev,
+.blogs-swiper-inner.swiper .swiper-button-prev,
+.testimonials-swiper-inner.swiper .swiper-button-prev {
   inset-inline-start: 0.15rem;
   inset-inline-end: auto;
 }
 .incoming-books-swiper-inner.swiper .swiper-button-next,
-.therapists-swiper-inner.swiper .swiper-button-next {
+.therapists-swiper-inner.swiper .swiper-button-next,
+.blogs-swiper-inner.swiper .swiper-button-next,
+.testimonials-swiper-inner.swiper .swiper-button-next {
   inset-inline-end: 0.15rem;
   inset-inline-start: auto;
 }
 
 .incoming-books-swiper-inner.swiper .swiper-navigation-icon,
-.therapists-swiper-inner.swiper .swiper-navigation-icon {
+.therapists-swiper-inner.swiper .swiper-navigation-icon,
+.blogs-swiper-inner.swiper .swiper-navigation-icon,
+.testimonials-swiper-inner.swiper .swiper-navigation-icon {
   width: 0.4rem;
   height: 0.75rem;
 }
 
 /* Chevron rotation for LTR/ RTL (align with `swiper/css/navigation` and `.swiper-rtl`) */
 .incoming-books-swiper-inner.swiper.swiper-horizontal .swiper-button-prev .swiper-navigation-icon,
-.therapists-swiper-inner.swiper.swiper-horizontal .swiper-button-prev .swiper-navigation-icon {
+.therapists-swiper-inner.swiper.swiper-horizontal .swiper-button-prev .swiper-navigation-icon,
+.blogs-swiper-inner.swiper.swiper-horizontal .swiper-button-prev .swiper-navigation-icon,
+.testimonials-swiper-inner.swiper.swiper-horizontal .swiper-button-prev .swiper-navigation-icon {
   transform: rotate(180deg);
 }
 .incoming-books-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-next .swiper-navigation-icon,
-.therapists-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-next .swiper-navigation-icon {
+.therapists-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-next .swiper-navigation-icon,
+.blogs-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-next .swiper-navigation-icon,
+.testimonials-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-next .swiper-navigation-icon {
   transform: rotate(180deg);
 }
 .incoming-books-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-prev .swiper-navigation-icon,
-.therapists-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-prev .swiper-navigation-icon {
+.therapists-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-prev .swiper-navigation-icon,
+.blogs-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-prev .swiper-navigation-icon,
+.testimonials-swiper-inner.swiper.swiper-horizontal.swiper-rtl .swiper-button-prev .swiper-navigation-icon {
   transform: rotate(0deg);
 }
 
@@ -113,36 +149,59 @@ body {
   .incoming-books-swiper-inner.swiper .swiper-button-next,
   .incoming-books-swiper-inner.swiper .swiper-button-prev,
   .therapists-swiper-inner.swiper .swiper-button-next,
-  .therapists-swiper-inner.swiper .swiper-button-prev {
+  .therapists-swiper-inner.swiper .swiper-button-prev,
+  .blogs-swiper-inner.swiper .swiper-button-next,
+  .blogs-swiper-inner.swiper .swiper-button-prev,
+  .testimonials-swiper-inner.swiper .swiper-button-next,
+  .testimonials-swiper-inner.swiper .swiper-button-prev {
     display: none;
   }
 }
 
 /* Carousels: each slide is one equal cell; card fills the cell width */
 .incoming-books-swiper-inner.swiper .swiper-slide,
-.therapists-swiper-inner.swiper .swiper-slide {
+.therapists-swiper-inner.swiper .swiper-slide,
+.blogs-swiper-inner.swiper .swiper-slide,
+.testimonials-swiper-inner.swiper .swiper-slide {
   display: flex;
   box-sizing: border-box;
   min-width: 0;
 }
 
 .incoming-books-swiper-inner.swiper .swiper-slide > *,
-.therapists-swiper-inner.swiper .swiper-slide > * {
+.therapists-swiper-inner.swiper .swiper-slide > *,
+.blogs-swiper-inner.swiper .swiper-slide > *,
+.testimonials-swiper-inner.swiper .swiper-slide > * {
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
   max-width: 100%;
 }
 
-/* Swiper pagination: primary color (sage) — all carousels */
+/* Pagination dots: phones only; desktop/tablet use arrows */
+@media (min-width: 640px) {
+  .incoming-books-swiper-inner.swiper .swiper-pagination,
+  .therapists-swiper-inner.swiper .swiper-pagination,
+  .blogs-swiper-inner.swiper .swiper-pagination,
+  .testimonials-swiper-inner.swiper .swiper-pagination,
+  .hero-doctor-swiper.swiper .swiper-pagination {
+    display: none !important;
+  }
+}
+
+/* Swiper pagination — brand primary (espresso) */
 .incoming-books-swiper-inner.swiper .swiper-pagination-bullet,
 .therapists-swiper-inner.swiper .swiper-pagination-bullet,
+.blogs-swiper-inner.swiper .swiper-pagination-bullet,
+.testimonials-swiper-inner.swiper .swiper-pagination-bullet,
 .hero-doctor-swiper.swiper .swiper-pagination-bullet {
   background: color-mix(in srgb, var(--primary) 40%, transparent);
   opacity: 1;
 }
 .incoming-books-swiper-inner.swiper .swiper-pagination-bullet-active,
 .therapists-swiper-inner.swiper .swiper-pagination-bullet-active,
+.blogs-swiper-inner.swiper .swiper-pagination-bullet-active,
+.testimonials-swiper-inner.swiper .swiper-pagination-bullet-active,
 .hero-doctor-swiper.swiper .swiper-pagination-bullet-active {
   background: var(--primary);
 }

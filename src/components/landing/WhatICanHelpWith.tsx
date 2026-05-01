@@ -91,7 +91,7 @@ export function WhatICanHelpWith() {
   return (
     <section
       id="what-i-can-help"
-      className="relative overflow-hidden border-t border-cream-dark bg-background px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+      className="relative overflow-hidden border-t border-cream-dark bg-background px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="what-i-can-help-heading"
     >
       <div
@@ -113,7 +113,7 @@ export function WhatICanHelpWith() {
         </header>
 
         {/* Three equal columns (lg+): tags | images | copy */}
-        <div className="mt-16 grid grid-cols-1 gap-14 lg:mt-24 lg:grid-cols-3 lg:items-start lg:gap-6 lg:gap-y-0 xl:gap-8">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-3 lg:items-start lg:gap-14">
           {/* Column 1: arrow + keyword cloud */}
           <div className="relative min-w-0 w-full lg:pt-4">
             <HandDrawnArrow className="absolute -left-2 -top-6 z-10 h-28 w-24 text-neutral-400/45 sm:-left-4 sm:-top-8 sm:h-32 sm:w-28" />

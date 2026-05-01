@@ -56,7 +56,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="border-t border-cream-dark bg-white/50 px-4 py-20 sm:px-6 lg:px-8"
+      className="border-t border-cream-dark bg-white/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
@@ -65,7 +65,7 @@ export function Services() {
           </h2>
           <p className="mt-4 text-lg text-muted">{s.lead}</p>
         </div>
-        <ul className="mt-14 grid gap-6 md:grid-cols-3">
+        <ul className="mt-10 grid gap-8 md:grid-cols-3">
           {s.cards.map((item, i) => (
             <li
               key={item.title}
