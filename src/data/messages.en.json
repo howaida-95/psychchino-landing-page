@@ -109,7 +109,7 @@
   },
   "howItWorks": {
     "heading": "How a Psychochino session works",
-    "lead": "From invitation to Meet link to conversation—transparent steps so you know what to expect.",
+    "lead": "From invitation to WhatsApp confirmation to conversation—clear steps so you know what to expect.",
     "steps": [
       {
         "step": "01",
@@ -118,8 +118,8 @@
       },
       {
         "step": "02",
-        "title": "Get your Google Meet link",
-        "body": "Before the call, you receive a Meet link and any prep notes—no special software beyond a browser."
+        "title": "Receive your Meet link on WhatsApp",
+        "body": "Before the call, we send the Google Meet link and prep notes to your WhatsApp number."
       },
       {
         "step": "03",
@@ -188,15 +188,15 @@
   },
   "cta": {
     "heading": "Join the next psychology book Meet",
-    "lead": "Leave your email and a short message—we will send Google Meet details for upcoming Psychochino sessions and reading schedules. No spam.",
-    "emailLabel": "Email",
-    "emailPh": "you@example.com",
-    "submit": "Request invite",
+    "lead": "To get the Google Meet link, open Psychochino's WhatsApp account and message the team directly.",
+    "emailLabel": "",
+    "emailPh": "",
+    "submit": "Open Psychochino WhatsApp",
     "p1": "Already on the list? ",
     "p1Bold": "Open your Google Meet link at session time.",
     "p2": " for private questions.",
-    "p2LinkText": "hello@psychochino.com",
-    "p2Before": "Email "
+    "p2LinkText": "Chat on WhatsApp",
+    "p2Before": "Message us on "
   },
   "blogs": {
     "kicker": "From the team",

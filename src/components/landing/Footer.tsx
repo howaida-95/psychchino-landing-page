@@ -7,14 +7,14 @@ import { useI18n } from "@/i18n";
 import { SocialLinks } from "./SocialLinks";
 
 const FOOTER_LINKS = [
-  { href: "#what-i-can-help", k: "howIHelp" },
-  { href: "#nice-to-meet-you", k: "aboutMe" },
-  { href: "#services", k: "services" },
-  { href: "#incoming-books", k: "books" },
-  { href: "#approach", k: "approach" },
-  { href: "#therapists", k: "therapists" },
-  { href: "#blogs", k: "blog" },
-  { href: "#contact", k: "contact" },
+  { href: "/#what-i-can-help", k: "howIHelp" },
+  { href: "/#nice-to-meet-you", k: "aboutMe" },
+  { href: "/#services", k: "services" },
+  { href: "/#incoming-books", k: "books" },
+  { href: "/#approach", k: "approach" },
+  { href: "/#therapists", k: "therapists" },
+  { href: "/#blogs", k: "blog" },
+  { href: "/#contact", k: "contact" },
 ] as const;
 
 export function Footer() {

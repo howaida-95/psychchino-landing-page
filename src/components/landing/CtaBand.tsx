@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { socialUrls } from "@/config/social";
 import { useI18n } from "@/i18n";
 
 export function CtaBand() {
@@ -21,29 +22,16 @@ export function CtaBand() {
           {c.heading}
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-white/85">{c.lead}</p>
-        <form
-          className="mx-auto mt-10 flex max-w-lg flex-col gap-3 sm:flex-row sm:items-stretch"
-          action="#"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <label htmlFor="cta-email" className="sr-only">
-            {c.emailLabel}
-          </label>
-          <input
-            id="cta-email"
-            type="email"
-            required
-            placeholder={c.emailPh}
-            className="min-h-12 flex-1 rounded-full border-0 bg-white px-5 text-foreground placeholder:text-muted/70 focus:outline-2 focus:outline-offset-2 focus:outline-white"
-            dir="ltr"
-          />
-          <button
-            type="submit"
-            className="min-h-12 rounded-full bg-accent px-6 font-semibold text-white transition-colors hover:bg-accent-hover"
+        <div className="mt-10">
+          <Link
+            href={socialUrls.whatsapp}
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-6 font-semibold text-white transition-colors hover:bg-accent-hover"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {c.submit}
-          </button>
-        </form>
+          </Link>
+        </div>
         <p className="mt-6 text-sm text-white/70">
           {c.p1}
           <span className="font-semibold">{c.p1Bold}</span>
@@ -51,9 +39,11 @@ export function CtaBand() {
         <p className="mt-2 text-sm text-white/70">
           {c.p2Before}
           <Link
-            href="mailto:hello@psychochino.com"
+            href={socialUrls.whatsapp}
             className="font-semibold underline underline-offset-2"
             dir="ltr"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {c.p2LinkText}
           </Link>

@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { useI18n } from "@/i18n";
 
 const HEADER_NAV = [
-  { href: "#what-i-can-help", k: "howIHelp" },
-  { href: "#nice-to-meet-you", k: "aboutMe" },
-  { href: "#services", k: "services" },
-  { href: "#incoming-books", k: "books" },
-  { href: "#approach", k: "approach" },
-  { href: "#therapists", k: "therapists" },
-  { href: "#stories", k: "stories" },
-  { href: "#blogs", k: "blog" },
+  { href: "/#what-i-can-help", k: "howIHelp" },
+  { href: "/#nice-to-meet-you", k: "aboutMe" },
+  { href: "/#services", k: "services" },
+  { href: "/#incoming-books", k: "books" },
+  { href: "/#approach", k: "approach" },
+  { href: "/#therapists", k: "therapists" },
+  { href: "/#stories", k: "stories" },
+  { href: "/#blogs", k: "blog" },
 ] as const;
 
 function NavLinks({
@@ -133,7 +133,7 @@ export function Header() {
               <LanguageSwitch />
             </div>
             <Link
-              href="#contact"
+              href="/#contact"
               className="inline-flex shrink-0 rounded-full bg-sage px-3 py-2 text-sm font-semibold text-white shadow-md shadow-sage/20 transition-colors hover:bg-sage-dark sm:px-4"
             >
               <span className="sm:hidden">{messages.header.ctaMeetShort}</span>
